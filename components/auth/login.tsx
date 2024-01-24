@@ -108,7 +108,11 @@ export const Login = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full" disabled={isPending}>
+              <Button
+                type="submit"
+                className="w-full mt-2"
+                disabled={isPending}
+              >
                 Submit
               </Button>
             </div>
