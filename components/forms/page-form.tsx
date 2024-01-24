@@ -18,7 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "../ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { title } from "process";
+import { features, title } from "process";
 import { useState, useTransition } from "react";
 import { error } from "console";
 import { updatePage } from "@/actions/pages";
@@ -33,6 +33,8 @@ interface PageFormProps {
   shortDescription: string | undefined | null;
   stepDescription: string | undefined | null;
   longDescription: string | undefined | null;
+  featuresTitle: string | undefined | null;
+  longDescriptionTitle: string | undefined | null;
 }
 
 export const PageForm = ({
@@ -42,6 +44,8 @@ export const PageForm = ({
   slug,
   stepDescription,
   title,
+  featuresTitle,
+  longDescriptionTitle,
 }: PageFormProps) => {
   const router = useRouter();
   const [isPending, startTransistion] = useTransition();
@@ -54,6 +58,8 @@ export const PageForm = ({
       shortDescription: shortDescription,
       longDescription: longDescription,
       stepDescription: stepDescription,
+      featuresTitle: featuresTitle,
+      longDescriptionTitle: longDescriptionTitle,
     },
   });
 
@@ -127,10 +133,46 @@ export const PageForm = ({
                     name="stepDescription"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Step Description </FormLabel>
+                        <FormLabel>Step Title </FormLabel>
                         <FormControl>
                           <Textarea
-                            placeholder="Enter step description here"
+                            placeholder="Enter step title here"
+                            {...field}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="featuresTitle"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Features Title</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter features title here"
+                            {...field}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="longDescriptionTitle"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Long Description Title</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter long description  title here"
                             {...field}
                             disabled={isPending}
                           />

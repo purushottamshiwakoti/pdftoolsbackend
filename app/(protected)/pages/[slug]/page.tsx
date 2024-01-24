@@ -44,6 +44,8 @@ const PagesPage = async ({ params }: { params: any }) => {
           stepDescription={data?.stepDescription}
           slug={data?.slug}
           title={data?.title}
+          featuresTitle={data?.featuresTitle}
+          longDescriptionTitle={data?.longDescriptionTitle}
         />
       </div>
       <div className=" w-full items-center justify-center">

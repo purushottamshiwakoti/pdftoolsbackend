@@ -16,6 +16,8 @@ export const pageSchema = z.object({
   shortDescription: z.optional(z.any()).nullable(),
   longDescription:  z.optional(z.any()).nullable(),
   stepDescription:  z.optional(z.any()).nullable(),
+  featuresTitle:  z.optional(z.any()).nullable(),
+  longDescriptionTitle:  z.optional(z.any()).nullable(),
 });
 
 export const stepSchema = z.object({

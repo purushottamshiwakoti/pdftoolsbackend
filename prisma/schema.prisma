@@ -20,15 +20,17 @@ model User {
 }
 
 model Pages {
-  id               String     @id @default(auto()) @map("_id") @db.ObjectId
-  title            String?
-  slug             String     @unique
-  shortDescription String?
-  stepDescription  String?
-  longDescription  String?
-  updated_at       DateTime   @updatedAt
-  Steps            Steps[]
-  Features         Features[]
+  id                   String     @id @default(auto()) @map("_id") @db.ObjectId
+  title                String?
+  slug                 String     @unique
+  shortDescription     String?
+  stepDescription      String?
+  longDescription      String?
+  featuresTitle        String?
+  longDescriptionTitle String?
+  updated_at           DateTime   @updatedAt
+  Steps                Steps[]
+  Features             Features[]
 }
 
 model Steps {
