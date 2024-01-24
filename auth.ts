@@ -13,23 +13,19 @@ export const {
   callbacks: {
     async signIn({ user }) {
       if (!user) return false;
-      const existingUser = await getUserById(user.id);
+      const existingUser = await getUserById(user.id as string);
       if (!existingUser) return false;
       // if(existingUser.twoFactorEnabled) return false;
 
       return true;
     },
-    async session({ session, token }) {
-      if (session.user && token.sub) {
-        session.user.fullName = token.fullName;
-        session.user.email = token.email;
-        session.user.id = token.id;
-      }
+    async session({ session,  }) {
+   
       return session;
     },
     async jwt({ token }) {
       if (!token.sub) return token;
-      const existingUser = await getUserById(token.sub);
+      const existingUser = await getUserById(token.sub as string);
       if (!existingUser) return null;
       token.fullName = existingUser.fullName;
       token.email = existingUser.email;
