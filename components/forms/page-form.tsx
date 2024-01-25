@@ -94,6 +94,11 @@ export const PageForm = ({
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-8 p-3"
               >
+                <div className="flex justify-end">
+                  <Button type="submit" disabled={isPending}>
+                    Save
+                  </Button>
+                </div>
                 <div className="space-y-4">
                   <FormField
                     control={form.control}

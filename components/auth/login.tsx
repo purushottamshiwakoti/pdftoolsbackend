@@ -5,23 +5,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { login } from "@/actions/user";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { CardWrapper } from "../card-wrapper";
-import { useState, useTransition } from "react";
-import { login } from "@/actions/user";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { FormError } from "../form-error";
+import { Eye, EyeOffIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { useState, useTransition } from "react";
+import { CardWrapper } from "../card-wrapper";
+import { FormError } from "../form-error";
 
 export const Login = () => {
   const [isPending, startTransistion] = useTransition();
@@ -30,7 +29,6 @@ export const Login = () => {
   // const [success, setSuccess] = useState("");
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
-  console.log(callbackUrl);
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -83,31 +81,35 @@ export const Login = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter your password here"
-                        {...field}
-                        disabled={isPending}
-                        type={viewPassword ? "text" : "password"}
-                        className="relative"
-                      />
-                    </FormControl>
-                    {/* <div
-                      className="absolute top-[25.7rem] left-[57rem] cursor-pointer"
-                      onClick={() => setViewPassword(!viewPassword)}
-                    >
-                      {viewPassword ? <EyeIcon /> : <EyeOffIcon />}
-                    </div> */}
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="relative">
+                <div>
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter your password here"
+                            {...field}
+                            disabled={isPending}
+                            type={viewPassword ? "text" : "password"}
+                            className="relative"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div
+                  className="absolute top-[2.5rem] right-1 cursor-pointer"
+                  onClick={() => setViewPassword(!viewPassword)}
+                >
+                  {viewPassword ? <Eye /> : <EyeOffIcon />}
+                </div>
+              </div>
               <Button
                 type="submit"
                 className="w-full mt-2"

@@ -1,6 +1,6 @@
 "use server"
 import * as z from "zod"
-import { loginSchema, registerSchema, updateUserSchema } from "@/schemas"
+import { changePasswordSchema, loginSchema, registerSchema, updateUserSchema } from "@/schemas"
 import { getUserByEmail, getUserById } from "@/lib/user";
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
@@ -129,6 +129,42 @@ try {
             }
         })
         return {success:"Successfully updated admin"}
+    } catch (error) {
+        return {error:"Something went wrong"}
+    }
+
+   }
+
+   export const changePassword=async(values: z.infer<typeof changePasswordSchema>,email:string)=>{
+
+   
+
+    try {
+        const validateFeilds=changePasswordSchema.safeParse(values);
+        if(!validateFeilds.success) {
+            return {error:"Invalid feilds"}
+        }
+    const {confirmPassword,newPassword,password}=validateFeilds.data;
+    if(newPassword!==confirmPassword){
+        return{error:"Password didn't matched"}
+    }
+        const user=await getUserByEmail(email);
+        if(!user) return {error:"User doesnot exists"}
+    
+        const checkPassword=await bcrypt.compare(password,user.password);
+        if(!checkPassword) return {error:"Your password didn't matched"}
+
+const hashedPassword=await bcrypt.hash(newPassword,10)
+
+        await prismadb.user.update({
+            where:{
+                email
+            },
+            data:{
+                password:hashedPassword
+            }
+        })
+        return {success:"Successfully updated password"}
     } catch (error) {
         return {error:"Something went wrong"}
     }

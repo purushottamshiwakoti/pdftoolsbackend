@@ -9,9 +9,12 @@ import { LogoutButton } from "../auth/logout-button";
 export const Navbar = () => {
   const session = GetCurrentUser();
   const date = new Date();
+
+  const name = session?.email && session.email.split("")[0];
+  console.log(name);
   return (
     <>
-      <div className=" p-2 bg-white fixed z-50 w-[80%] mt-1 shadow-md rounded-md mb-3 flex items-center justify-between">
+      <div className=" p-2 bg-white fixed z-50 w-[80%] mt-1 shadow-md rounded-md mb-3 flex items-center justify-between mr-20">
         <h1 className="text-tight text-muted-foreground flex items-center ">
           <PersonIcon className="w-5 h-5 mr-1" />
           Welcome {session?.email}
@@ -22,7 +25,7 @@ export const Navbar = () => {
         >
           {date.getUTCDate()}-{date.getMonth() + 1}-{date.getFullYear()}{" "}
         </Button>
-        <LogoutButton />
+        <LogoutButton name={name ? name : "Admin"} />
       </div>
     </>
   );
