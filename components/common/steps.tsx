@@ -35,25 +35,33 @@ export const Steps = ({ Steps }: StepsProps) => {
   const [editableId, setEditableId] = useState("");
   const [deleteId, setDeleteId] = useState("");
   const [newTitle, setTitle] = useState("");
+  const [oldTitle, setOldTitle] = useState("");
   const [isPending, startTransistion] = useTransition();
 
   const handleUpdateStep = () => {
-    startTransistion(() => {
-      updateStep(editableId, newTitle).then((data) => {
-        if (data?.success) {
-          setEditableId("");
-          setTitle("");
-          router.refresh();
-          toast.success(data.success);
-        }
-        if (data?.error) {
-          setEditableId("");
-          setTitle("");
-          router.refresh();
-          toast.error(data.error);
-        }
+    console.log(newTitle);
+    console.log(oldTitle == newTitle);
+    if (oldTitle == newTitle) {
+      setEditableId("");
+      setTitle("");
+    } else {
+      startTransistion(() => {
+        updateStep(editableId, newTitle).then((data) => {
+          if (data?.success) {
+            setEditableId("");
+            setTitle("");
+            router.refresh();
+            toast.success(data.success);
+          }
+          if (data?.error) {
+            setEditableId("");
+            setTitle("");
+            router.refresh();
+            toast.error(data.error);
+          }
+        });
       });
-    });
+    }
   };
 
   const handleDeleteStep = (id: string) => {
@@ -128,6 +136,7 @@ export const Steps = ({ Steps }: StepsProps) => {
                                 onClick={() => {
                                   setEditableId(id);
                                   setTitle(title);
+                                  setOldTitle(title);
                                 }}
                                 disabled={isPending}
                               >

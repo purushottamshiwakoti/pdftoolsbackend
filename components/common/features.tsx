@@ -44,30 +44,40 @@ export const Features = ({ Features }: FearuresProps) => {
 
   const [editableId, setEditableId] = useState("");
   const [title, setTitle] = useState("");
+  const [oldTitle, setOldTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [oldDescription, setOldDescription] = useState("");
   const [icon, setIcon] = useState("");
+  const [oldIcon, setOldIcon] = useState("");
 
   const [isPending, startTransistion] = useTransition();
 
   const handleUpdateFeatures = (id: string) => {
-    startTransistion(() => {
-      updateFeatures(id, title, description, icon).then((data) => {
-        if (data?.success) {
-          setEditableId("");
-          setTitle("");
-          setDescription("");
-          setIcon("");
-          router.refresh();
-          toast.success(data.success);
-        }
-        if (data?.error) {
-          setEditableId("");
-          setTitle("");
-          router.refresh();
-          toast.error(data.error);
-        }
+    if (oldTitle == title && oldDescription == description && oldIcon == icon) {
+      setEditableId("");
+      setTitle("");
+      setDescription("");
+      setIcon("");
+    } else {
+      startTransistion(() => {
+        updateFeatures(id, title, description, icon).then((data) => {
+          if (data?.success) {
+            setEditableId("");
+            setTitle("");
+            setDescription("");
+            setIcon("");
+            router.refresh();
+            toast.success(data.success);
+          }
+          if (data?.error) {
+            setEditableId("");
+            setTitle("");
+            router.refresh();
+            toast.error(data.error);
+          }
+        });
       });
-    });
+    }
   };
 
   const handleDeleteFeature = (id: string) => {
@@ -120,8 +130,7 @@ export const Features = ({ Features }: FearuresProps) => {
                                       size={"icon"}
                                       variant={"success"}
                                       onClick={(e) => {
-                                        e.preventDefault(),
-                                          handleUpdateFeatures(item.id);
+                                        handleUpdateFeatures(item.id);
                                       }}
                                       disabled={isPending}
                                     >
@@ -132,11 +141,13 @@ export const Features = ({ Features }: FearuresProps) => {
                                       size={"icon"}
                                       variant={"success"}
                                       onClick={(e) => {
-                                        e.preventDefault(),
-                                          setEditableId(item.id),
+                                        setEditableId(item.id),
                                           setTitle(item.title),
+                                          setOldTitle(item.title),
                                           setDescription(item.description),
+                                          setOldDescription(item.description),
                                           setIcon(item.icon);
+                                        setOldIcon(item.icon);
                                       }}
                                       disabled={isPending}
                                     >
