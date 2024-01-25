@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { registerSchema } from "@/schemas";
+import { registerSchema, updateUserSchema } from "@/schemas";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
@@ -37,17 +37,17 @@ export const EditAdminForm = ({
   const router = useRouter();
   const [isPending, startTransistion] = useTransition();
   const [error, setError] = useState("");
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
+  const form = useForm<z.infer<typeof updateUserSchema>>({
+    resolver: zodResolver(updateUserSchema),
     defaultValues: {
       fullName: fullName,
       email: email,
-      password: password,
+      // password: password,
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof registerSchema>) {
+  function onSubmit(values: z.infer<typeof updateUserSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     // console.log(values);
@@ -142,7 +142,7 @@ export const EditAdminForm = ({
                   </FormItem>
                 )}
               />
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
@@ -160,7 +160,7 @@ export const EditAdminForm = ({
                     <FormMessage />
                   </FormItem>
                 )}
-              />
+              /> */}
               <Button type="submit" disabled={isPending}>
                 Save
               </Button>

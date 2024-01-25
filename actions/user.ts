@@ -1,6 +1,6 @@
 "use server"
 import * as z from "zod"
-import { loginSchema, registerSchema } from "@/schemas"
+import { loginSchema, registerSchema, updateUserSchema } from "@/schemas"
 import { getUserByEmail, getUserById } from "@/lib/user";
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
@@ -108,12 +108,15 @@ try {
 
    }
 
-   export const updateUser=async(values: z.infer<typeof registerSchema>,id:string)=>{
+   export const updateUser=async(values: z.infer<typeof updateUserSchema>,id:string)=>{
+
    
 
     try {
-        const validateFeilds=registerSchema.safeParse(values);
-        if(!validateFeilds.success) return {error:"Invalid feilds"}
+        const validateFeilds=updateUserSchema.safeParse(values);
+        if(!validateFeilds.success) {
+            return {error:"Invalid feilds"}
+        }
     
         const user=await getUserById(id);
         if(!user) return {error:"User doesnot exists"}

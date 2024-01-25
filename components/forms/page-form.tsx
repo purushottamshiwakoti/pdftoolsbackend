@@ -172,7 +172,7 @@ export const PageForm = ({
                     name="longDescriptionTitle"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Long Description Title</FormLabel>
+                        <FormLabel>Article Title</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="Enter long description  title here"
@@ -190,7 +190,7 @@ export const PageForm = ({
                     name="longDescription"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Long Description </FormLabel>
+                        <FormLabel>Article Description </FormLabel>
                         <FormControl>
                           {/* <Textarea
                             placeholder="Enter step description here"

@@ -57,24 +57,24 @@ export const Steps = ({ Steps }: StepsProps) => {
   };
 
   const handleDeleteStep = (id: string) => {
-    // confirm("Are you sure you want to delete this step");
+    const confirmation = confirm("Are you sure you want to delete this step");
 
-    // console.log(deleteId);
-
-    startTransistion(() => {
-      deleteStep(id).then((data) => {
-        if (data?.success) {
-          setDeleteId("");
-          router.refresh();
-          toast.success(data.success);
-        }
-        if (data?.error) {
-          setDeleteId("");
-          router.refresh();
-          toast.error(data.error);
-        }
+    if (confirmation) {
+      startTransistion(() => {
+        deleteStep(id).then((data) => {
+          if (data?.success) {
+            setDeleteId("");
+            router.refresh();
+            toast.success(data.success);
+          }
+          if (data?.error) {
+            setDeleteId("");
+            router.refresh();
+            toast.error(data.error);
+          }
+        });
       });
-    });
+    }
   };
 
   return (

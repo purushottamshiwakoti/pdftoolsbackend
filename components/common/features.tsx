@@ -71,24 +71,30 @@ export const Features = ({ Features }: FearuresProps) => {
   };
 
   const handleDeleteFeature = (id: string) => {
-    startTransistion(() => {
-      deleteFeatures(id).then((data) => {
-        if (data?.success) {
-          setEditableId("");
-          setTitle("");
-          setDescription("");
-          setIcon("");
-          router.refresh();
-          toast.success(data.success);
-        }
-        if (data?.error) {
-          setEditableId("");
-          setTitle("");
-          router.refresh();
-          toast.error(data.error);
-        }
+    const confirmation = confirm(
+      "Are you sure you want to delete this feature"
+    );
+
+    if (confirmation) {
+      startTransistion(() => {
+        deleteFeatures(id).then((data) => {
+          if (data?.success) {
+            setEditableId("");
+            setTitle("");
+            setDescription("");
+            setIcon("");
+            router.refresh();
+            toast.success(data.success);
+          }
+          if (data?.error) {
+            setEditableId("");
+            setTitle("");
+            router.refresh();
+            toast.error(data.error);
+          }
+        });
       });
-    });
+    }
   };
 
   return (

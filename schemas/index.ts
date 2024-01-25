@@ -11,6 +11,11 @@ export const registerSchema = z.object({
   password: z.string().min(6, { message: "Password must be minimum of 6 characters" }),
 });
 
+export const updateUserSchema = z.object({
+  fullName: z.string().min(2,{message:"Fullname is required"}),
+  email: z.string().email(),
+});
+
 export const pageSchema = z.object({
   title: z.any().nullable(),
   shortDescription: z.optional(z.any()).nullable(),
