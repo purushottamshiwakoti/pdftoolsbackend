@@ -17,6 +17,15 @@ import { deleteFeatures, updateFeatures } from "@/actions/pages";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { icons } from "@/lib/icons";
+
 interface FearuresProps {
   Features:
     | {
@@ -174,13 +183,39 @@ export const Features = ({ Features }: FearuresProps) => {
                                 </div>
                                 <div className="space-y-2">
                                   <h2>Icon</h2>
-                                  <Input
+                                  {/* <Input
                                     value={
                                       editableId === item.id ? icon : item.icon
                                     }
                                     disabled={editableId !== item.id}
                                     onChange={(e) => setIcon(e.target.value)}
-                                  />
+                                  /> */}
+                                  <Select
+                                    value={
+                                      editableId === item.id ? icon : item.icon
+                                    }
+                                    disabled={editableId !== item.id}
+                                    onValueChange={(value) => setIcon(value)}
+                                  >
+                                    <SelectTrigger className="w-full">
+                                      <SelectValue placeholder="Select icon" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      {icons.map((item) => (
+                                        <SelectItem
+                                          value={item.name}
+                                          key={item.name}
+                                        >
+                                          <div className="flex items-center space-x-1">
+                                            <span className="mr-2" color="blue">
+                                              {<item.icon />}
+                                            </span>
+                                            {item.name}
+                                          </div>
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
                                 </div>
                               </div>
                             </AccordionContent>

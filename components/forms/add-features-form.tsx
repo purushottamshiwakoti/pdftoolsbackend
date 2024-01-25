@@ -23,6 +23,15 @@ import { toast } from "sonner";
 import { Textarea } from "../ui/textarea";
 import { useRouter } from "next/navigation";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { icons } from "@/lib/icons";
+
 export const AddFeaturesForm = ({ id }: { id: string | undefined }) => {
   const router = useRouter();
   const [isPending, startTransisition] = useTransition();
@@ -51,7 +60,6 @@ export const AddFeaturesForm = ({ id }: { id: string | undefined }) => {
         }
       });
     });
-    console.log(values);
   }
   return (
     <Card className=" mt-10">
@@ -104,11 +112,29 @@ export const AddFeaturesForm = ({ id }: { id: string | undefined }) => {
                 <FormItem>
                   <FormLabel>Add Step Icon</FormLabel>
                   <FormControl>
-                    <Input
+                    {/* <Input
                       placeholder="Enter step icon here"
                       {...field}
                       disabled={isPending}
-                    />
+                    /> */}
+
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select icon" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {icons.map((item) => (
+                          <SelectItem value={item.name} key={item.name}>
+                            <div className="flex items-center space-x-1">
+                              <span className="mr-2" color="blue">
+                                {<item.icon />}
+                              </span>
+                              {item.name}
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </FormControl>
 
                   <FormMessage />

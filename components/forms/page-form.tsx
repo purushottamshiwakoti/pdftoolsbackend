@@ -26,6 +26,15 @@ import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
 import { useRouter } from "next/navigation";
 
+import dynamic from "next/dynamic";
+
+const CustomEditor = dynamic(
+  () => {
+    return import("@/components/custom-editor");
+  },
+  { ssr: false }
+);
+
 interface PageFormProps {
   id: string | undefined;
   title: string | null | undefined;
@@ -47,10 +56,12 @@ export const PageForm = ({
   featuresTitle,
   longDescriptionTitle,
 }: PageFormProps) => {
+  const [ckEditorValue, setCkEditorValue] = useState("");
   const router = useRouter();
   const [isPending, startTransistion] = useTransition();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
   const form = useForm<z.infer<typeof pageSchema>>({
     resolver: zodResolver(pageSchema),
     defaultValues: {
@@ -67,19 +78,23 @@ export const PageForm = ({
   function onSubmit(values: z.infer<typeof pageSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    startTransistion(() => {
-      setError("");
-      setSuccess("");
-      updatePage(values, slug as string).then((data) => {
-        if (data?.success) {
-          router.refresh();
-          setSuccess(data.success);
-        }
-        if (data?.error) {
-          setError(data.error);
-        }
-      });
-    });
+    // startTransistion(() => {
+    //   setError("");
+    //   setSuccess("");
+    //   updatePage(values, slug as string).then((data) => {
+    //     if (data?.success) {
+    //       router.refresh();
+    //       setSuccess(data.success);
+    //     }
+    //     if (data?.error) {
+    //       setError(data.error);
+    //     }
+    //   });
+    // });
+
+    const { longDescription } = values;
+
+    console.log(ckEditorValue);
   }
   return (
     <>
@@ -189,10 +204,15 @@ export const PageForm = ({
                       <FormItem>
                         <FormLabel>Long Description </FormLabel>
                         <FormControl>
-                          <Textarea
+                          {/* <Textarea
                             placeholder="Enter step description here"
                             {...field}
                             disabled={isPending}
+                          /> */}
+                          <CustomEditor
+                            initialData={field.value}
+                            {...field}
+                            onChange={(data: any) => console.log(data)}
                           />
                         </FormControl>
 
