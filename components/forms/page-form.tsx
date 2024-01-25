@@ -9,31 +9,23 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "../ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { features, title } from "process";
-import { useState, useTransition } from "react";
-import { error } from "console";
-import { updatePage } from "@/actions/pages";
-import { FormSuccess } from "../form-success";
-import { FormError } from "../form-error";
 import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { FormError } from "../form-error";
+import { FormSuccess } from "../form-success";
+import { Card, CardContent } from "../ui/card";
 
-import dynamic from "next/dynamic";
-
-const CustomEditor = dynamic(
-  () => {
-    return import("@/components/custom-editor");
-  },
-  { ssr: false }
-);
+import EditorToolbar, { formats, modules } from "@/components/editor-toolbar";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { updatePage } from "@/actions/pages";
 
 interface PageFormProps {
   id: string | undefined;
@@ -78,23 +70,19 @@ export const PageForm = ({
   function onSubmit(values: z.infer<typeof pageSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    // startTransistion(() => {
-    //   setError("");
-    //   setSuccess("");
-    //   updatePage(values, slug as string).then((data) => {
-    //     if (data?.success) {
-    //       router.refresh();
-    //       setSuccess(data.success);
-    //     }
-    //     if (data?.error) {
-    //       setError(data.error);
-    //     }
-    //   });
-    // });
-
-    const { longDescription } = values;
-
-    console.log(ckEditorValue);
+    startTransistion(() => {
+      setError("");
+      setSuccess("");
+      updatePage(values, slug as string).then((data) => {
+        if (data?.success) {
+          router.refresh();
+          setSuccess(data.success);
+        }
+        if (data?.error) {
+          setError(data.error);
+        }
+      });
+    });
   }
   return (
     <>
@@ -209,11 +197,21 @@ export const PageForm = ({
                             {...field}
                             disabled={isPending}
                           /> */}
-                          <CustomEditor
-                            initialData={field.value}
-                            {...field}
-                            onChange={(data: any) => console.log(data)}
-                          />
+                          <div>
+                            <EditorToolbar />
+                            <ReactQuill
+                              theme="snow"
+                              placeholder={"Write long description here..."}
+                              modules={modules}
+                              formats={formats}
+                              {...field}
+                            />
+                            {/* <ReactQuill
+                              theme="snow"
+                              value={field.value}
+                              onChange={field.onChange}
+                            /> */}
+                          </div>
                         </FormControl>
 
                         <FormMessage />
