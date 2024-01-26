@@ -27,6 +27,11 @@ export const publicRoutes=[
     "/api/page/protect-pdf",
     "/api/page/protect-pdf",
     "/api/page/unlock-pdf",
+    "/api/other/home",
+    "/api/other/about",
+    "/api/other/contact-us",
+    "/api/other/privacy-policy",
+    "/api/other/terms-and-conditions",
   
     
 ]

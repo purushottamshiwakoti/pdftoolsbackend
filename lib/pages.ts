@@ -13,3 +13,18 @@ export const getPageBySlug=async(slug:string)=>{
     }
 
 }
+
+export const getOtherPageById=async(id:string)=>{
+    console.log(id)
+    try {
+        const page=await prismadb.otherPages.findUnique({
+            where:{
+                id
+            }
+        });
+        return page
+    } catch (error) {
+        return null;
+    }
+
+}

@@ -180,7 +180,7 @@ export const PageForm = ({
                         <FormLabel>Article Title</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="Enter long description  title here"
+                            placeholder="Enter article title here"
                             {...field}
                             disabled={isPending}
                           />
@@ -206,7 +206,7 @@ export const PageForm = ({
                             <EditorToolbar />
                             <ReactQuill
                               theme="snow"
-                              placeholder={"Write long description here..."}
+                              placeholder={"Write article description here..."}
                               modules={modules}
                               formats={formats}
                               {...field}

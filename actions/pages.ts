@@ -2,8 +2,8 @@ import { error } from 'console';
 "use server"
 
 import prismadb from "@/lib/db"
-import { getPageBySlug } from "@/lib/pages"
-import { featuresSchema, pageSchema, stepSchema } from "@/schemas"
+import { getOtherPageById, getPageBySlug } from "@/lib/pages"
+import { featuresSchema, otherPageSchema, pageSchema, stepSchema } from "@/schemas"
 
 import * as z from "zod"
 
@@ -163,6 +163,29 @@ export const deleteFeatures=async(id:string)=>{
     } catch (error) {
         return{error:"Something went wrong"}
         
+    }
+
+}
+
+
+export const updateOtherPage=async(values: z.infer<typeof otherPageSchema>,id:string)=>{
+ 
+
+    try {
+        const page=await getOtherPageById(id)
+        if(!page) return {error:"Page not found"}
+        await prismadb.otherPages.update({
+            where:{
+                id
+            },
+            data:{
+                ...values
+            }
+        })
+
+        return {success:"Page updated successfully"}
+    } catch (error) {
+        return({error:"Something went wrong"})
     }
 
 }

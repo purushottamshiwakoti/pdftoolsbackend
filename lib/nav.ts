@@ -1,4 +1,5 @@
 import { BookmarkIcon, DashboardIcon, PersonIcon } from "@radix-ui/react-icons";
+import { BookmarkCheckFill } from "react-bootstrap-icons";
 
 export const adminNavLinks=[
     {
@@ -15,6 +16,11 @@ export const adminNavLinks=[
         name:"Pages",
         href:"/pages",
         icon:BookmarkIcon
+    },
+    {
+        name:"Other Pages",
+        href:"/other-pages",
+        icon:BookmarkCheckFill
     },
    
     

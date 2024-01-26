@@ -47,3 +47,8 @@ export const changePasswordSchema = z.object({
   message: "Passwords don't match",
   path: ["confirmPassword"],
 });
+
+export const otherPageSchema = z.object({
+  title:z.optional(z.any()).nullable(),
+  description:z.optional(z.any()).nullable()
+});

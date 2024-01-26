@@ -20,35 +20,14 @@ import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 
 const pages = [
-  "merge-pdf",
-  "compress-pdf",
-  "rotate-pdf-pages",
-  "remove-pdf-pages",
-  "organize-pdf-pages",
-  "grayscale-pdf",
-  "extract-pdf-pages",
-  "repair-pdf",
-  "jpg-to-pdf",
-  "png-to-pdf",
-  "bmp-to-pdf",
-  "tiff-to-pdf",
-  "word-to-pdf",
-  "pptx-to-pdf",
-  "txt-to-pdf",
-  "excel-to-pdf",
-  "pdf-to-jpg",
-  "pdf-to-png",
-  "pdf-to-bmp",
-  "pdf-to-tiff",
-  "pdf-to-word",
-  "pdf-to-pptx",
-  "pdf-to-txt",
-  "pdf-to-zip",
-  "protect-pdf",
-  "unlock-pdf",
+  "home",
+  "about",
+  "privacy-policy",
+  "terms-and-conditions",
+  "contact-us",
 ];
 
-export const SelectPages = ({ name }: { name: string }) => {
+export const SelectOtherPages = ({ name }: { name: string }) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -84,10 +63,10 @@ export const SelectPages = ({ name }: { name: string }) => {
                     <Button
                       key={index}
                       variant={name == item ? "default" : "outline"}
-                      className="my-1 w-full"
+                      className="my-1"
                       asChild
                     >
-                      <Link href={`/pages/${item}`}>{item}</Link>
+                      <Link href={`/other-pages/${item}`}>{item}</Link>
                     </Button>
                   </CommandItem>
                 ))}

@@ -50,3 +50,11 @@ model Features {
   description String
   updated_at  DateTime @updatedAt
 }
+
+model OtherPages {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  title       String?
+  description String?
+  updated_at  DateTime @updatedAt
+}
