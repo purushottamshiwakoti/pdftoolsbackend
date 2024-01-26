@@ -108,7 +108,9 @@ export const Steps = ({ Steps }: StepsProps) => {
                       <div key={id}>
                         <AccordionContent className="flex justify-between w-full items-cen">
                           {editableId !== id ? (
-                            <div>{title}</div>
+                            <Textarea className="max-w-[35rem]" disabled>
+                              {title}
+                            </Textarea>
                           ) : (
                             <Textarea
                               value={newTitle}
