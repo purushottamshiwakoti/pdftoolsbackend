@@ -191,7 +191,7 @@ export const updateOtherPage=async(values: z.infer<typeof otherPageSchema>,id:st
 }
 
 export const updatesettings=async(values: z.infer<typeof otherPageSchema>,page_id?:string|null|undefined,id?:string|null|undefined)=>{
- 
+ console.log({id})
 
     try {
        if(page_id){

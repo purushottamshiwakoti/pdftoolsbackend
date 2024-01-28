@@ -64,11 +64,10 @@ export const AddSettingsForm = ({
   function onSubmit(values: z.infer<typeof settingsSchema>) {
     // Do something with the form values.
     startTransisition(() => {
-      updatesettings(values, settingsArray[0].id).then((data) => {
+      updatesettings(values, null, settingsArray[0].id).then((data) => {
         if (data?.success) {
-          toast.success(data.success);
           router.refresh();
-          form.reset();
+          toast.success(data.success);
         }
         if (data?.error) {
           toast.error(data.error);
