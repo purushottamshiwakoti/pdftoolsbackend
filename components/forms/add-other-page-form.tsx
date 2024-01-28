@@ -23,10 +23,20 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useState, useTransition } from "react";
 import { updateOtherPage } from "@/actions/pages";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { Textarea } from "../ui/textarea";
+import { AddSettingsForm } from "./add-settings-form";
+
+interface AddOtherPageFormProps {
+  title: string | undefined | null;
+  description: string | undefined | null;
+  id: string | undefined | null;
+  metaTitle: string | undefined | null;
+  metaDescription: string | undefined | null;
+  Settings?: any[];
+}
 
 export const AddOtherPageForm = ({
   description,
@@ -34,14 +44,10 @@ export const AddOtherPageForm = ({
   title,
   metaDescription,
   metaTitle,
-}: {
-  title: string | undefined | null;
-  description: string | undefined | null;
-  id: string | undefined | null;
-  metaTitle: string | undefined | null;
-  metaDescription: string | undefined | null;
-}) => {
+  Settings,
+}: AddOtherPageFormProps) => {
   const router = useRouter();
+  const params = useParams();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPending, startTransistion] = useTransition();
@@ -76,100 +82,110 @@ export const AddOtherPageForm = ({
   }
 
   return (
-    <Card className="w-[50rem]">
-      <CardContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-8 p-4"
-          >
-            <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Title</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter title here"
-                        {...field}
-                        disabled={isPending}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Title</FormLabel>
-                    <FormControl>
-                      <div>
-                        <EditorToolbar />
-                        <ReactQuill
-                          theme="snow"
-                          placeholder={"Write  description here..."}
-                          modules={modules}
-                          formats={formats}
-                          {...field}
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="metaTitle"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Meta Title</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter meta title here"
-                        {...field}
-                        disabled={isPending}
-                      />
-                    </FormControl>
+    <>
+      <div className="flex flex-col">
+        <Card className="w-[50rem]">
+          <CardContent>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8 p-4"
+              >
+                <div className="space-y-4">
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Title</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter title here"
+                            {...field}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="description"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Title</FormLabel>
+                        <FormControl>
+                          <div>
+                            <EditorToolbar />
+                            <ReactQuill
+                              theme="snow"
+                              placeholder={"Write  description here..."}
+                              modules={modules}
+                              formats={formats}
+                              {...field}
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="metaTitle"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Meta Title</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter meta title here"
+                            {...field}
+                            disabled={isPending}
+                          />
+                        </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="metaDescription"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Meta Description</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Enter meta description here"
-                        {...field}
-                        disabled={isPending}
-                      />
-                    </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="metaDescription"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Meta Description</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Enter meta description here"
+                            {...field}
+                            disabled={isPending}
+                          />
+                        </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" disabled={isPending}>
-                Save
-              </Button>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button type="submit" disabled={isPending}>
+                    Save
+                  </Button>
+                </div>
+              </form>
+            </Form>
+            <div className="mt-2">
+              <FormError message={error} />
+              <FormSuccess message={success} />
             </div>
-          </form>
-        </Form>
-        <div className="mt-2">
-          <FormError message={error} />
-          <FormSuccess message={success} />
+          </CardContent>
+        </Card>
+
+        <div>
+          {params.slug === "home" && (
+            <AddSettingsForm page_id={id} Settings={Settings} />
+          )}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </>
   );
 };

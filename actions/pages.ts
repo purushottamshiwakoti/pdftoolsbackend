@@ -189,3 +189,28 @@ export const updateOtherPage=async(values: z.infer<typeof otherPageSchema>,id:st
     }
 
 }
+
+export const updatesettings=async(values: z.infer<typeof otherPageSchema>,page_id?:string|null|undefined,id?:string|null|undefined)=>{
+ 
+
+    try {
+       if(page_id){
+        const page=await getOtherPageById(page_id)
+        if(!page) return {error:"Page not found"}
+        await prismadb.settings.create({
+           
+            data:{
+                other_page_id:page_id,
+                ...values,
+            },
+            
+        })
+       }
+
+        return {success:"Page updated successfully"}
+    } catch (error) {
+        return({error:"Something went wrong"})
+    }
+
+}
+

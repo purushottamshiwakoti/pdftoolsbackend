@@ -57,3 +57,23 @@ export const otherPageSchema = z.object({
   metaDescription:  z.optional(z.any()).nullable(),
 
 });
+
+export const settingsSchema=z.object({
+  title:z.optional(z.any()).nullable(),               
+  description:z.optional(z.any()).nullable(),         
+  image :z.optional(z.any()).nullable(),       
+  imageAlt :z.optional(z.any()).nullable(), 
+  button:z.optional(z.any()).nullable(),
+  buttonHref  :z.optional(z.any()).nullable(),        
+  buttonTwo    :z.optional(z.any()).nullable(),       
+  buttonTwoHref   :z.optional(z.any()).nullable(),    
+  tasksTitle      :z.optional(z.any()).nullable(),    
+  tasksDescription :z.optional(z.any()).nullable(),   
+  tasksSubTitle    :z.optional(z.any()).nullable(),   
+  tasksSubDescription :z.optional(z.any()).nullable(),
+  tasksButton      :z.optional(z.any()).nullable(),   
+  tasksButtonHref  :z.optional(z.any()).nullable(),   
+  tasksImage       :z.optional(z.any()).nullable(), 
+  tasksImageAlt   :z.optional(z.any()).nullable(),
+
+})

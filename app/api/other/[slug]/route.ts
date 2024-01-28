@@ -8,6 +8,9 @@ export async function GET(req:any,params:any){
     const page=await prismadb.otherPages.findFirst({
       where:{
         name:slug
+      },
+      include:{
+        Settings:true
       }
     });
 

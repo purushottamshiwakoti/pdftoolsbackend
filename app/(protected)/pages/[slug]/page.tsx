@@ -17,6 +17,9 @@ async function getData(slug: string) {
       where: {
         name: slug,
       },
+      include: {
+        Settings: true,
+      },
     });
 
     return data;
@@ -40,6 +43,7 @@ const OtherPage = async ({ params }: { params: any }) => {
           id={data?.id}
           metaTitle={data?.metaTitle}
           metaDescription={data?.metaDescription}
+          Settings={data?.Settings}
         />
       </div>
     </>
