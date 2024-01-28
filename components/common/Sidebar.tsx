@@ -71,7 +71,7 @@ export const Sidebar = () => {
                   </div>
                 </Button> */}
 
-                <Accordion type="single" collapsible>
+                <Accordion type="single" collapsible key={item.name}>
                   <AccordionItem value="item-1">
                     <Button
                       className="w-full flex items-start justify-start"
@@ -96,7 +96,7 @@ export const Sidebar = () => {
                             <CommandList>
                               <CommandEmpty>No results found.</CommandEmpty>
                               <CommandGroup heading={item.name}>
-                                {item.children?.map((child) => (
+                                {item.children?.map((child, index) => (
                                   <Button
                                     variant={
                                       pathname.includes(child)
@@ -105,6 +105,7 @@ export const Sidebar = () => {
                                     }
                                     className="w-full mb-2 flex items-start justify-start"
                                     asChild
+                                    key={index}
                                   >
                                     <CommandItem>
                                       <Link href={item.href + `/${child}`}>
