@@ -109,8 +109,8 @@ export const Features = ({ Features }: FearuresProps) => {
 
   return (
     <>
-      <div className="mt-10  ml-[20rem] mb-40">
-        <Card className="w-[45rem]">
+      <div className="mt-10 ml-[19rem]">
+        <Card className="w-[40rem]">
           <CardContent>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">

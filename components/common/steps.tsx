@@ -87,8 +87,8 @@ export const Steps = ({ Steps }: StepsProps) => {
 
   return (
     <>
-      <div className="mt-10 ml-[20rem]">
-        <Card className="w-[45rem]">
+      <div className="mt-10 ml-[19rem]">
+        <Card className="w-[40rem]">
           <CardContent>
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
@@ -108,14 +108,14 @@ export const Steps = ({ Steps }: StepsProps) => {
                       <div key={id}>
                         <AccordionContent className="flex justify-between w-full items-cen">
                           {editableId !== id ? (
-                            <Textarea className="max-w-[35rem]" disabled>
+                            <Textarea className="max-w-[30rem]" disabled>
                               {title}
                             </Textarea>
                           ) : (
                             <Textarea
                               value={newTitle}
                               onChange={(e) => setTitle(e.target.value)}
-                              className="max-w-[35rem]"
+                              className="max-w-[30rem]"
                             />
                           )}
 

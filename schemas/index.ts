@@ -23,6 +23,8 @@ export const pageSchema = z.object({
   stepDescription:  z.optional(z.any()).nullable(),
   featuresTitle:  z.optional(z.any()).nullable(),
   longDescriptionTitle:  z.optional(z.any()).nullable(),
+  metaTitle:  z.optional(z.any()).nullable(),
+  metaDescription:  z.optional(z.any()).nullable(),
 });
 
 export const stepSchema = z.object({
@@ -50,5 +52,8 @@ export const changePasswordSchema = z.object({
 
 export const otherPageSchema = z.object({
   title:z.optional(z.any()).nullable(),
-  description:z.optional(z.any()).nullable()
+  description:z.optional(z.any()).nullable(),
+  metaTitle:  z.optional(z.any()).nullable(),
+  metaDescription:  z.optional(z.any()).nullable(),
+
 });

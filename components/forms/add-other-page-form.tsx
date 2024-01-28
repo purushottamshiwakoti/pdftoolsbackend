@@ -21,21 +21,25 @@ import { Card, CardContent } from "../ui/card";
 import EditorToolbar, { formats, modules } from "@/components/editor-toolbar";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { title } from "process";
 import { useState, useTransition } from "react";
 import { updateOtherPage } from "@/actions/pages";
 import { useRouter } from "next/navigation";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
+import { Textarea } from "../ui/textarea";
 
 export const AddOtherPageForm = ({
   description,
   id,
   title,
+  metaDescription,
+  metaTitle,
 }: {
   title: string | undefined | null;
   description: string | undefined | null;
   id: string | undefined | null;
+  metaTitle: string | undefined | null;
+  metaDescription: string | undefined | null;
 }) => {
   const router = useRouter();
   const [error, setError] = useState("");
@@ -47,6 +51,8 @@ export const AddOtherPageForm = ({
     defaultValues: {
       title: title,
       description: description,
+      metaDescription: metaDescription,
+      metaTitle: metaTitle,
     },
   });
 
@@ -113,6 +119,42 @@ export const AddOtherPageForm = ({
                         />
                       </div>
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="metaTitle"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Meta Title</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter meta title here"
+                        {...field}
+                        disabled={isPending}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="metaDescription"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Meta Description</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Enter meta description here"
+                        {...field}
+                        disabled={isPending}
+                      />
+                    </FormControl>
+
                     <FormMessage />
                   </FormItem>
                 )}

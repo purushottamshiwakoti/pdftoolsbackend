@@ -36,6 +36,8 @@ interface PageFormProps {
   longDescription: string | undefined | null;
   featuresTitle: string | undefined | null;
   longDescriptionTitle: string | undefined | null;
+  metaTitle: string | undefined | null;
+  metaDescription: string | undefined | null;
 }
 
 export const PageForm = ({
@@ -47,8 +49,9 @@ export const PageForm = ({
   title,
   featuresTitle,
   longDescriptionTitle,
+  metaDescription,
+  metaTitle,
 }: PageFormProps) => {
-  const [ckEditorValue, setCkEditorValue] = useState("");
   const router = useRouter();
   const [isPending, startTransistion] = useTransition();
   const [error, setError] = useState("");
@@ -63,6 +66,8 @@ export const PageForm = ({
       stepDescription: stepDescription,
       featuresTitle: featuresTitle,
       longDescriptionTitle: longDescriptionTitle,
+      metaTitle: metaTitle,
+      metaDescription: metaDescription,
     },
   });
 
@@ -210,6 +215,7 @@ export const PageForm = ({
                               modules={modules}
                               formats={formats}
                               {...field}
+                              readOnly={isPending}
                             />
                             {/* <ReactQuill
                               theme="snow"
@@ -217,6 +223,42 @@ export const PageForm = ({
                               onChange={field.onChange}
                             /> */}
                           </div>
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="metaTitle"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Meta Title</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter meta title here"
+                            {...field}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="metaDescription"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Meta Description</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Enter meta description here"
+                            {...field}
+                            disabled={isPending}
+                          />
                         </FormControl>
 
                         <FormMessage />

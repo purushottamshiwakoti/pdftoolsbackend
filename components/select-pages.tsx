@@ -84,7 +84,7 @@ export const SelectPages = ({ name }: { name: string }) => {
                     <Button
                       key={index}
                       variant={name == item ? "default" : "outline"}
-                      className="my-1 w-full"
+                      className="my-1 w-full flex items-start justify-start"
                       asChild
                     >
                       <Link href={`/pages/${item}`}>{item}</Link>
