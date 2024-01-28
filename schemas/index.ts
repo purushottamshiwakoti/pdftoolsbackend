@@ -77,3 +77,21 @@ export const settingsSchema=z.object({
   tasksImageAlt   :z.optional(z.any()).nullable(),
 
 })
+
+
+export const chooseUsSchema = z.object({
+  title: z.string().min(3,{message:"Title is required"}),
+  description: z.string().min(3,{message:"Description is required"}),
+  image: z.string().min(3,{message:"Image is required"}),
+  imageAlt: z.string().min(1,{message:"Image alt text is required"}),
+ 
+});
+
+
+export const reviewsSchema = z.object({
+  name: z.string().min(3,{message:"Name is required"}),
+  description: z.string().min(3,{message:"Description is required"}),
+  role: z.string().min(3,{message:"Role is required"}),
+  rating: z.string().min(1,{message:"Rating is required"}),
+ 
+});

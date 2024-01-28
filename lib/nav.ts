@@ -1,5 +1,5 @@
 import { BookmarkIcon, DashboardIcon, PersonIcon } from "@radix-ui/react-icons";
-import { Axe } from "lucide-react";
+import { ActivitySquare, Axe, Star } from "lucide-react";
 import { BookmarkCheckFill } from "react-bootstrap-icons";
 
 export const adminNavLinks=[
@@ -61,6 +61,18 @@ export const adminNavLinks=[
   "terms-and-conditions",
   "contact-us",
         ]
+    },
+    {
+        name:"Choose Us",
+        href:"/choose-us",
+        hasChildren:false,
+        icon:ActivitySquare
+    },
+    {
+        name:"Reviews",
+        href:"/reviews",
+        hasChildren:false,
+        icon:Star
     },
    
     
