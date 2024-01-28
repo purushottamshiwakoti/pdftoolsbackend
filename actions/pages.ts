@@ -206,6 +206,18 @@ export const updatesettings=async(values: z.infer<typeof otherPageSchema>,page_i
             
         })
        }
+       
+       if(id){
+        await prismadb.settings.update({
+            where:{
+                id:id,
+            },
+            data:{
+                ...values,
+            },
+            
+        })
+       }
 
         return {success:"Page updated successfully"}
     } catch (error) {

@@ -64,7 +64,7 @@ export const AddSettingsForm = ({
   function onSubmit(values: z.infer<typeof settingsSchema>) {
     // Do something with the form values.
     startTransisition(() => {
-      updatesettings(values, page_id).then((data) => {
+      updatesettings(values, settingsArray[0].id).then((data) => {
         if (data?.success) {
           toast.success(data.success);
           router.refresh();
@@ -208,7 +208,7 @@ export const AddSettingsForm = ({
                   <FormItem>
                     <FormLabel>Hero Image </FormLabel>
                     <FormDescription>
-                      Please add image of isze 200*200px
+                      Please add image of size 700*400px
                     </FormDescription>
                     <FormControl>
                       <ImageUpload
@@ -359,7 +359,7 @@ export const AddSettingsForm = ({
                   <FormItem>
                     <FormLabel>Banner Image </FormLabel>
                     <FormDescription>
-                      Image size must be 200*200px
+                      Please add image of size 700*400px
                     </FormDescription>
                     <FormControl>
                       {/* <Input
