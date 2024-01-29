@@ -106,3 +106,13 @@ model Reviews {
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
+
+model CompanyImages {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  image      String?
+  imageTwo   String?
+  imageThree String?
+  imageFour  String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

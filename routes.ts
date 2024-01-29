@@ -32,6 +32,9 @@ export const publicRoutes=[
     "/api/other/contact-us",
     "/api/other/privacy-policy",
     "/api/other/terms-and-conditions",
+    "/api/choose-us",
+    "/api/reviews",
+    "/api/company-image",
   
     
 ]

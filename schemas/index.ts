@@ -93,5 +93,11 @@ export const reviewsSchema = z.object({
   description: z.string().min(3,{message:"Description is required"}),
   role: z.string().min(3,{message:"Role is required"}),
   rating: z.string().min(1,{message:"Rating is required"}),
- 
+});
+
+export const companyImageSchema = z.object({
+  image  :z.optional(z.any()).nullable(),
+  imageTwo  :z.optional(z.any()).nullable(),
+  imageThree  :z.optional(z.any()).nullable(),
+  imageFour  :z.optional(z.any()).nullable(),
 });
