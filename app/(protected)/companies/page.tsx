@@ -14,7 +14,6 @@ async function getData() {
 
 const CompaniesPage = async () => {
   const data = await getData();
-  console.log(data);
   return (
     <>
       <div>
@@ -25,6 +24,10 @@ const CompaniesPage = async () => {
             imageTwo={data.imageTwo}
             imageThree={data.imageThree}
             imageFour={data.imageFour}
+            imageAlt={data.imageAlt}
+            imageTwoAlt={data.imageTwoAlt}
+            imageThreeAlt={data.imageThreeAlt}
+            imageFourAlt={data.imageFourAlt}
           />
         )}
       </div>

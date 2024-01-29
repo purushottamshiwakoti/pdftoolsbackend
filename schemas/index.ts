@@ -97,7 +97,20 @@ export const reviewsSchema = z.object({
 
 export const companyImageSchema = z.object({
   image  :z.optional(z.any()).nullable(),
+  imageAlt  :z.optional(z.any()).nullable(),
   imageTwo  :z.optional(z.any()).nullable(),
+  imageTwoAlt  :z.optional(z.any()).nullable(),
   imageThree  :z.optional(z.any()).nullable(),
+  imageThreeAlt  :z.optional(z.any()).nullable(),
   imageFour  :z.optional(z.any()).nullable(),
+  imageFourAlt :z.optional(z.any()).nullable(),
+});
+
+export const seoSettingsSchema = z.object({
+  ogTitle: z.string().min(3,{message:"OG Title is required"}),
+  ogDescription: z.string().min(3,{message:"OG Description is required"}),
+  ogImage: z.string().min(1,{message:"OG Image is required"}),
+  ogImageAlt: z.string().min(1,{message:"OG Image alt text is required"}),
+  googleSiteVerificationCode:z.optional(z.any()).nullable(),
+ 
 });

@@ -87,7 +87,7 @@ export const deleteReview=async(id:string)=>{
         return {success:"Successfully deleted review"}
         
     } catch (error) {
-        return {error:"Somethin went wrong"};
+        return {error:"Something went wrong"};
     }
 
 }

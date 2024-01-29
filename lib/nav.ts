@@ -1,5 +1,5 @@
 import { BookmarkIcon, DashboardIcon, PersonIcon } from "@radix-ui/react-icons";
-import { ActivitySquare, Axe, Building, Star } from "lucide-react";
+import { ActivitySquare, Axe, Building, Settings, Star } from "lucide-react";
 import { BookmarkCheckFill } from "react-bootstrap-icons";
 
 export const adminNavLinks=[
@@ -79,6 +79,13 @@ export const adminNavLinks=[
         href:"/companies",
         hasChildren:false,
         icon:Building
+    },
+    {
+        name:"Seo Settings",
+        href:"/seo",
+        hasChildren:false,
+        icon:Settings,
+        
     },
    
     

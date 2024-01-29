@@ -108,11 +108,26 @@ model Reviews {
 }
 
 model CompanyImages {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  image      String?
-  imageTwo   String?
-  imageThree String?
-  imageFour  String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  image         String?
+  imageAlt      String?
+  imageTwo      String?
+  imageTwoAlt   String?
+  imageThree    String?
+  imageThreeAlt String?
+  imageFour     String?
+  imageFourAlt  String?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+}
+
+model SeoSettings {
+  id                         String   @id @default(auto()) @map("_id") @db.ObjectId
+  ogTitle                    String
+  ogDescription              String
+  ogImage                    String
+  ogImageAlt                 String
+  googleSiteVerificationCode String?
+  created_at                 DateTime @default(now())
+  updated_at                 DateTime @updatedAt
 }

@@ -35,6 +35,7 @@ export const publicRoutes=[
     "/api/choose-us",
     "/api/reviews",
     "/api/company-image",
+    "/api/seo-settings",
   
     
 ]

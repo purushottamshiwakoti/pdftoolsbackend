@@ -31,6 +31,10 @@ interface AddCompanyImageFormProps {
   imageTwo: string | null;
   imageFour: string | null;
   imageThree: string | null;
+  imageAlt: string | null;
+  imageTwoAlt: string | null;
+  imageThreeAlt: string | null;
+  imageFourAlt: string | null;
 }
 
 export const AddCompanyImageForm = ({
@@ -39,6 +43,10 @@ export const AddCompanyImageForm = ({
   imageFour,
   imageThree,
   imageTwo,
+  imageAlt,
+  imageTwoAlt,
+  imageThreeAlt,
+  imageFourAlt,
 }: AddCompanyImageFormProps) => {
   const router = useRouter();
   const [isPending, startTransisition] = useTransition();
@@ -49,6 +57,10 @@ export const AddCompanyImageForm = ({
       imageTwo: imageTwo,
       imageFour: imageFour,
       imageThree: imageThree,
+      imageFourAlt: imageFourAlt,
+      imageThreeAlt: imageThreeAlt,
+      imageTwoAlt: imageTwoAlt,
+      imageAlt: imageAlt,
     },
   });
 
@@ -77,78 +89,172 @@ export const AddCompanyImageForm = ({
             className="space-y-4 p-2"
           >
             <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="image"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Image One</FormLabel>
-                    <FormControl>
-                      <ImageUpload
-                        onChange={field.onChange}
-                        value={field.value}
-                        disabled={isPending}
-                      />
-                    </FormControl>
+              <div className="grid grid-cols-4">
+                <div className="col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="image"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image One</FormLabel>
+                        <FormControl>
+                          <ImageUpload
+                            onChange={field.onChange}
+                            value={field.value}
+                            disabled={isPending}
+                          />
+                        </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="imageTwo"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Image Two</FormLabel>
-                    <FormControl>
-                      <ImageUpload
-                        onChange={field.onChange}
-                        value={field.value}
-                        disabled={isPending}
-                      />
-                    </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="-ml-[15rem]">
+                  <FormField
+                    control={form.control}
+                    name="imageAlt"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image One Alt Text</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="Enter image one alt text"
+                          />
+                        </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="imageThree"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Image Three</FormLabel>
-                    <FormControl>
-                      <ImageUpload
-                        onChange={field.onChange}
-                        value={field.value}
-                        disabled={isPending}
-                      />
-                    </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-4">
+                <div className="col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="imageTwo"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image Two</FormLabel>
+                        <FormControl>
+                          <ImageUpload
+                            onChange={field.onChange}
+                            value={field.value}
+                            disabled={isPending}
+                          />
+                        </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="imageFour"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Image Four</FormLabel>
-                    <FormControl>
-                      <ImageUpload
-                        onChange={field.onChange}
-                        value={field.value}
-                        disabled={isPending}
-                      />
-                    </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="-ml-[15rem]">
+                  <FormField
+                    control={form.control}
+                    name="imageTwoAlt"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image Two Alt Text</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="Enter image two alt text"
+                          />
+                        </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-4">
+                <div className="col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="imageThree"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image Three</FormLabel>
+                        <FormControl>
+                          <ImageUpload
+                            onChange={field.onChange}
+                            value={field.value}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="-ml-[15rem]">
+                  <FormField
+                    control={form.control}
+                    name="imageThreeAlt"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image Three Alt Text</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="Enter image three alt text"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-4">
+                <div className="col-span-3">
+                  <FormField
+                    control={form.control}
+                    name="imageFour"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image Four</FormLabel>
+                        <FormControl>
+                          <ImageUpload
+                            onChange={field.onChange}
+                            value={field.value}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="-ml-[15rem]">
+                  <FormField
+                    control={form.control}
+                    name="imageFourAlt"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image Four Alt Text</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="Enter image four alt text"
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
               <Button type="submit" disabled={isPending}>
                 Save
               </Button>
