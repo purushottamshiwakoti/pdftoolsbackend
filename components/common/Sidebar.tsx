@@ -89,34 +89,54 @@ export const Sidebar = () => {
                     <AccordionContent>
                       <div className="">
                         <div className="">
-                          <Command>
-                            <CommandInput
-                              placeholder={`Search ${item.name}...`}
-                            />
-                            <CommandList>
-                              <CommandEmpty>No results found.</CommandEmpty>
-                              <CommandGroup heading={item.name}>
-                                {item.children?.map((child, index) => (
-                                  <Button
-                                    variant={
-                                      pathname.includes(child)
-                                        ? "default"
-                                        : "outline"
-                                    }
-                                    className="w-full mb-2 flex items-start justify-start"
-                                    asChild
-                                    key={index}
-                                  >
-                                    <CommandItem>
-                                      <Link href={item.href + `/${child}`}>
-                                        {child}
-                                      </Link>
-                                    </CommandItem>
-                                  </Button>
-                                ))}
-                              </CommandGroup>
-                            </CommandList>
-                          </Command>
+                          {item.searchable ? (
+                            <Command>
+                              <CommandInput
+                                placeholder={`Search ${item.name}...`}
+                              />
+                              <CommandList>
+                                <CommandEmpty>No results found.</CommandEmpty>
+                                <CommandGroup heading={item.name}>
+                                  {item.children?.map((child, index) => (
+                                    <Button
+                                      variant={
+                                        pathname.includes(child)
+                                          ? "default"
+                                          : "outline"
+                                      }
+                                      className="w-full mb-2 flex items-start justify-start"
+                                      asChild
+                                      key={index}
+                                    >
+                                      <CommandItem>
+                                        <Link href={item.href + `/${child}`}>
+                                          {child}
+                                        </Link>
+                                      </CommandItem>
+                                    </Button>
+                                  ))}
+                                </CommandGroup>
+                              </CommandList>
+                            </Command>
+                          ) : (
+                            item.children &&
+                            item.children.map((child, index) => (
+                              <Button
+                                variant={
+                                  pathname.includes(child)
+                                    ? "default"
+                                    : "outline"
+                                }
+                                className="w-full mb-2 flex items-start justify-start"
+                                asChild
+                                key={index}
+                              >
+                                <Link href={item.href + `/${child}`}>
+                                  {child}
+                                </Link>
+                              </Button>
+                            ))
+                          )}
                         </div>
                       </div>
                     </AccordionContent>

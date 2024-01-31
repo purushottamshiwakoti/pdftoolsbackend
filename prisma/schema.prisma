@@ -131,3 +131,11 @@ model SeoSettings {
   created_at                 DateTime @default(now())
   updated_at                 DateTime @updatedAt
 }
+
+model Categories {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  slug       String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

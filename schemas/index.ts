@@ -114,3 +114,7 @@ export const seoSettingsSchema = z.object({
   googleSiteVerificationCode:z.optional(z.any()).nullable(),
  
 });
+
+export const categoriesSchema=z.object({
+  name:z.string().min(3,{message:"Category Name is required"}),
+});

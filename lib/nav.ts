@@ -1,5 +1,5 @@
 import { BookmarkIcon, DashboardIcon, PersonIcon } from "@radix-ui/react-icons";
-import { ActivitySquare, Axe, Building, Settings, Star } from "lucide-react";
+import { ActivitySquare, Axe, BrickWall, Building, Settings, Star } from "lucide-react";
 import { BookmarkCheckFill } from "react-bootstrap-icons";
 
 export const adminNavLinks=[
@@ -20,6 +20,7 @@ export const adminNavLinks=[
         href:"/tools",
         hasChildren:true,
         icon:Axe,
+        searchable:true,
         children:[
             "merge-pdf",
             "compress-pdf",
@@ -60,6 +61,7 @@ export const adminNavLinks=[
   "privacy-policy",
   "terms-and-conditions",
   "contact-us",
+  "blogs"
         ]
     },
     {
@@ -86,6 +88,17 @@ export const adminNavLinks=[
         hasChildren:false,
         icon:Settings,
         
+    },
+
+    {
+        name:"Blogs",
+        href:"/blogs",
+        hasChildren:true,
+        icon:BrickWall,
+        children:[
+       "categories",
+       "all-blogs"
+        ]
     },
    
     
