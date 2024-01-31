@@ -4,7 +4,7 @@ import React from "react";
 const AllBlogsPage = () => {
   return (
     <div>
-      <AddButton name="Add Category" href="/blogs" />
+      <AddButton name="Add Blog" href="/blogs/all-blogs-add" />
     </div>
   );
 };
