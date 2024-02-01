@@ -48,9 +48,8 @@ export const EditCategoryForm = ({
       updateCategory(values, id).then((data) => {
         if (data?.success) {
           toast.success(data.success);
-          router.refresh();
           router.push("/blogs/categories");
-          form.reset();
+          router.refresh();
         }
         if (data?.error) {
           toast.error(data.error);

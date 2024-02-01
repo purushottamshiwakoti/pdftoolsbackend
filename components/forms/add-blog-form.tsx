@@ -69,9 +69,8 @@ export const AddBlogForm = ({ categories }: AddBlogFormProps) => {
       addBlog(values).then((data) => {
         if (data?.success) {
           toast.success(data.success);
-          router.refresh();
           router.push("/blogs/all-blogs");
-          form.reset();
+          router.refresh();
         }
         if (data?.error) {
           toast.error(data.error);
