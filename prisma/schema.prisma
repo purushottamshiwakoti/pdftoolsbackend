@@ -145,7 +145,7 @@ model Blog {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
-  slug        String
+  slug        String @unique
   image       String
   imageAlt    String
   category_id String     @db.ObjectId

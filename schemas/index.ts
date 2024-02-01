@@ -118,3 +118,12 @@ export const seoSettingsSchema = z.object({
 export const categoriesSchema=z.object({
   name:z.string().min(3,{message:"Category Name is required"}),
 });
+
+export const blogSchema=z.object({
+  title:z.string().min(3,{message:"Blog title is required"}),
+  description:z.string().min(3,{message:"Blog description is required"}),
+  slug:z.string().min(3,{message:"Blog slug is required"}),
+  image:z.string().min(3,{message:"Blog image is required"}),
+  imageAlt:z.string().min(1,{message:"Blog image alt text is required"}),
+  category_id:z.string().min(1,{message:"Blog category is required"}),
+});

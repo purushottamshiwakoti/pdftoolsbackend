@@ -1,7 +1,7 @@
 "use server"
 
 import prismadb from "@/lib/db";
-import { categoriesSchema } from "@/schemas";
+import { blogSchema, categoriesSchema } from "@/schemas";
 import * as z from "zod";
 
 
@@ -96,6 +96,116 @@ id
         });
 
         return {success:"Successfully deleted category"}
+        
+    } catch (error) {
+        return {error:"Something went wrong"};
+        
+    }
+}
+
+export const addBlog=async(values: z.infer<typeof blogSchema>)=>{
+    try {
+        const validateSchema=blogSchema.safeParse(values);
+        if(!validateSchema.success){
+            return{
+                error:"Invalid feilds"
+            }
+        }
+
+        const {category_id,description,image,imageAlt,slug,title}=validateSchema.data;
+
+        const blogExists=await prismadb.blog.findUnique({
+            where:{
+                slug
+            }
+        })
+
+        if(blogExists){
+            return {error:"Blog already exists with this slug"}
+        }
+
+
+        await prismadb.blog.create({
+            data:{
+               title,
+               slug,
+               description,
+               image,
+               imageAlt,
+            category_id
+            }
+        });
+
+        return {success:"Successfully created blog"}
+        
+    } catch (error) {
+        return {error:"Something went wrong"};
+        
+    }
+}
+
+
+export const updateBlog=async(values: z.infer<typeof blogSchema>,id:string)=>{
+    try {
+        const validateSchema=blogSchema.safeParse(values);
+        if(!validateSchema.success){
+            return{
+                error:"Invalid feilds"
+            }
+        }
+
+       
+        const findBlog=await prismadb.blog.findUnique({
+            where:{
+                id
+            }
+        })
+
+        if(!findBlog){
+            return {error:"No blog found"}
+        }
+
+
+        await prismadb.blog.update({
+            where:{
+                id
+            },
+            data:{
+             ...values
+            }
+        });
+
+        return {success:"Successfully updated blog"}
+        
+    } catch (error) {
+        return {error:"Something went wrong"};
+        
+    }
+}
+
+
+export const deleteBlog=async(id:string)=>{
+    try {
+      
+        const findBlog=await prismadb.blog.findUnique({
+            where:{
+                id
+            }
+        })
+
+        if(!findBlog){
+            return {error:"No blog found"}
+        }
+
+
+        await prismadb.blog.delete({
+            where:{
+                id
+            },
+           
+        });
+
+        return {success:"Successfully deleted blog"}
         
     } catch (error) {
         return {error:"Something went wrong"};
