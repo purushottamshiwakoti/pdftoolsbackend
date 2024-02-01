@@ -207,7 +207,9 @@ export const AddBlogForm = ({ categories }: AddBlogFormProps) => {
                         </FormControl>
                         <SelectContent>
                           {categories?.map((item) => (
-                            <SelectItem value={item.id}>{item.name}</SelectItem>
+                            <SelectItem value={item.id} key={item.id}>
+                              {item.name}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
