@@ -166,7 +166,7 @@ model Comment {
   updated_at DateTime @updatedAt
 }
 
-// model Views {
+// model Views { 
 //   id         String   @id @default(auto()) @map("_id") @db.ObjectId
 //   created_at DateTime @default(now())
 //   updated_at DateTime @updatedAt
