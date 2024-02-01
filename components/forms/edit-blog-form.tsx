@@ -85,8 +85,8 @@ export const EditBlogForm = ({
       updateBlog(values, id).then((data) => {
         if (data?.success) {
           toast.success(data.success);
-          router.push("/blogs/all-blogs");
           router.refresh();
+          router.push("/blogs/all-blogs");
           form.reset();
         }
         if (data?.error) {
