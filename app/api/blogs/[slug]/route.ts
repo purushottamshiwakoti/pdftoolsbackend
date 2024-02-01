@@ -7,6 +7,13 @@ export async function GET(req:any,params:any){
         const data=await prismadb.blog.findUnique({
             where:{
                 slug
+            },
+            include:{
+                category:{
+                    select:{
+                        name:true
+                    }
+                }
             }
         })
 

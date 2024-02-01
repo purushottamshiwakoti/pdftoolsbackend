@@ -145,13 +145,25 @@ model Blog {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
-  slug        String @unique
+  slug        String     @unique
   image       String
   imageAlt    String
   category_id String     @db.ObjectId
   category    Categories @relation(fields: [category_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
+  Comment     Comment[]
+}
+
+model Comment {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  fullName   String
+  email      String
+  comment    String
+  blog_id    String   @db.ObjectId
+  blog       Blog     @relation(fields: [blog_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 // model Views {
