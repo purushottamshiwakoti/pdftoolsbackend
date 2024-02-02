@@ -97,7 +97,8 @@ export const adminNavLinks=[
         icon:BrickWall,
         children:[
        "categories",
-       "all-blogs"
+       "all-blogs",
+       "comments"
         ]
     },
    

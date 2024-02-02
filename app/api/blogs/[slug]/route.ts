@@ -13,8 +13,11 @@ export async function GET(req:any,params:any){
                     select:{
                         name:true
                     }
-                }
-            }
+                },
+                comments:true,
+                views:true
+            },
+            
         })
 
         if(!data){

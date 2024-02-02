@@ -152,7 +152,13 @@ model Blog {
   category    Categories @relation(fields: [category_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   created_at  DateTime   @default(now())
   updated_at  DateTime   @updatedAt
-  Comment     Comment[]
+  comments    Comment[]
+  views       Views[]
+}
+
+enum Status {
+  READ
+  UNREAD
 }
 
 model Comment {
@@ -161,13 +167,17 @@ model Comment {
   email      String
   comment    String
   blog_id    String   @db.ObjectId
-  blog       Blog     @relation(fields: [blog_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  status     Status   @default(UNREAD)
+  blog       Blog     @relation(fields: [blog_id], references: [id])
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
-// model Views { 
-//   id         String   @id @default(auto()) @map("_id") @db.ObjectId
-//   created_at DateTime @default(now())
-//   updated_at DateTime @updatedAt
-// }
+model Views {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  views      Int
+  blog_id    String   @db.ObjectId
+  blog       Blog     @relation(fields: [blog_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

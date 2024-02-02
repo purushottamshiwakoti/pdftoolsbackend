@@ -14,7 +14,8 @@ created_at:"desc"
                     select:{
                         name:true
                     }
-                }
+                },
+                views:true
             }
             
         })
