@@ -87,7 +87,6 @@ export const EditChooseUsForm = ({
           toast.success(data.success);
           router.push("/choose-us");
           router.refresh();
-          form.reset();
         }
         if (data?.error) {
           toast.error(data.error);
