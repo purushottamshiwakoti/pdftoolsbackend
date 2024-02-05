@@ -46,9 +46,8 @@ export const AddReviewForm = () => {
       addReviews(values).then((data) => {
         if (data?.success) {
           toast.success(data.success);
-          
+
           router.refresh();
-          form.reset();
         }
         if (data?.error) {
           toast.error(data.error);
