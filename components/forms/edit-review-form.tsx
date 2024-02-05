@@ -79,7 +79,6 @@ export const EditReviewForm = ({
     startTransisition(() => {
       deleteReview(id).then((data) => {
         if (data?.success) {
-          router.refresh();
           toast.success(data.success);
           router.push("/reviews");
           router.refresh();
