@@ -61,10 +61,8 @@ export const EditReviewForm = ({
         if (data?.success) {
           toast.success(data.success);
 
-          router.refresh();
           router.push("/reviews");
-
-          form.reset();
+          router.refresh();
         }
         if (data?.error) {
           toast.error(data.error);
