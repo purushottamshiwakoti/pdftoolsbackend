@@ -50,6 +50,10 @@ const PagesPage = async ({ params }: { params: any }) => {
           longDescriptionTitle={data?.longDescriptionTitle}
           metaTitle={data?.metaTitle}
           metaDescription={data?.metaDescription}
+          ogDescription={data?.ogDescription}
+          ogImage={data?.ogImage}
+          ogImageAlt={data?.ogImageAlt}
+          ogTitle={data?.ogTitle}
         />
       </div>
       <div className=" w-[80%] relative">

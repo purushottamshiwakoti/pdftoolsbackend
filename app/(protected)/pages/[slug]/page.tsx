@@ -30,7 +30,6 @@ async function getData(slug: string) {
 
 const OtherPage = async ({ params }: { params: any }) => {
   const data = await getData(params.slug);
-  console.log(data);
   return (
     <>
       <div className="flex items-center justify-between w-[90%] ">
@@ -44,6 +43,10 @@ const OtherPage = async ({ params }: { params: any }) => {
           metaTitle={data?.metaTitle}
           metaDescription={data?.metaDescription}
           Settings={data?.Settings}
+          ogDescription={data?.ogDescription}
+          ogImage={data?.ogImage}
+          ogImageAlt={data?.ogImageAlt}
+          ogTitle={data?.ogTitle}
         />
       </div>
     </>

@@ -28,6 +28,7 @@ import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { Textarea } from "../ui/textarea";
 import { AddSettingsForm } from "./add-settings-form";
+import { ImageUpload } from "../image-upload";
 
 interface AddOtherPageFormProps {
   title: string | undefined | null;
@@ -35,6 +36,11 @@ interface AddOtherPageFormProps {
   id: string | undefined | null;
   metaTitle: string | undefined | null;
   metaDescription: string | undefined | null;
+  ogTitle: string | undefined | null;
+  ogDescription: string | undefined | null;
+  ogImage: string | undefined | null;
+  ogImageAlt: string | undefined | null;
+
   Settings?: any[];
 }
 
@@ -45,6 +51,10 @@ export const AddOtherPageForm = ({
   metaDescription,
   metaTitle,
   Settings,
+  ogDescription,
+  ogImage,
+  ogImageAlt,
+  ogTitle,
 }: AddOtherPageFormProps) => {
   const router = useRouter();
   const params = useParams();
@@ -59,6 +69,10 @@ export const AddOtherPageForm = ({
       description: description,
       metaDescription: metaDescription,
       metaTitle: metaTitle,
+      ogTitle: ogTitle,
+      ogDescription: ogDescription,
+      ogImage: ogImage,
+      ogImageAlt: ogImageAlt,
     },
   });
 
@@ -167,6 +181,86 @@ export const AddOtherPageForm = ({
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name="ogTitle"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Add Og Title</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter og title here"
+                            {...field}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="ogDescription"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Add Og Description</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Enter og description here"
+                            {...field}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="grid ">
+                    <div className="">
+                      <FormField
+                        control={form.control}
+                        name="ogImage"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Add Og Image</FormLabel>
+                            <FormDescription>
+                              Image size must be 1200 X 630 pixels
+                            </FormDescription>
+                            <FormControl>
+                              <ImageUpload
+                                value={field.value}
+                                onChange={field.onChange}
+                                disabled={isPending}
+                              />
+                            </FormControl>
+
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="">
+                      <FormField
+                        control={form.control}
+                        name="ogImageAlt"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>OG Image Alt Text</FormLabel>
+                            <FormControl>
+                              <Input
+                                {...field}
+                                placeholder="Enter og image  alt text"
+                              />
+                            </FormControl>
+
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
                   <Button type="submit" disabled={isPending}>
                     Save
                   </Button>

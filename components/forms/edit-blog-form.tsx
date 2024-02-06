@@ -53,6 +53,10 @@ interface AddBlogFormProps {
   imageAlt: string;
   metaDescription: string | undefined;
   metaTitle: string | undefined;
+  ogDescription: string | undefined;
+  ogImage: string | undefined;
+  ogImageAlt: string | undefined;
+  ogTitle: string | undefined;
   id: string;
 }
 
@@ -67,6 +71,10 @@ export const EditBlogForm = ({
   title,
   metaDescription,
   metaTitle,
+  ogDescription,
+  ogImage,
+  ogImageAlt,
+  ogTitle,
 }: AddBlogFormProps) => {
   const router = useRouter();
   const [isPending, startTransisition] = useTransition();
@@ -81,6 +89,10 @@ export const EditBlogForm = ({
       imageAlt: imageAlt,
       metaDescription: metaDescription,
       metaTitle: metaTitle,
+      ogDescription: ogDescription,
+      ogImage: ogImage,
+      ogImageAlt: ogImageAlt,
+      ogTitle: ogTitle,
     },
   });
 
@@ -305,6 +317,86 @@ export const EditBlogForm = ({
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="ogTitle"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Add Og Title</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter og title here"
+                          {...field}
+                          disabled={isPending}
+                        />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="ogDescription"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Add Og Description</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Enter og description here"
+                          {...field}
+                          disabled={isPending}
+                        />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="grid grid-cols-4">
+                  <div className="col-span-3">
+                    <FormField
+                      control={form.control}
+                      name="ogImage"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Add Og Image</FormLabel>
+                          <FormDescription>
+                            Image size must be 1200 X 630 pixels
+                          </FormDescription>
+                          <FormControl>
+                            <ImageUpload
+                              value={field.value}
+                              onChange={field.onChange}
+                              disabled={isPending}
+                            />
+                          </FormControl>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="-ml-[15rem]">
+                    <FormField
+                      control={form.control}
+                      name="ogImageAlt"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>OG Image Alt Text</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              placeholder="Enter og image  alt text"
+                            />
+                          </FormControl>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
               </div>
               <Button type="submit" disabled={isPending}>
                 Save

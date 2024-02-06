@@ -30,6 +30,10 @@ model Pages {
   longDescription      String?
   featuresTitle        String?
   longDescriptionTitle String?
+  ogTitle              String?
+  ogDescription        String?
+  ogImage              String?
+  ogImageAlt           String?
   updated_at           DateTime   @updatedAt
   Steps                Steps[]
   Features             Features[]
@@ -60,6 +64,10 @@ model OtherPages {
   metaTitle       String?
   metaDescription String?
   description     String?
+  ogTitle         String?
+  ogDescription   String?
+  ogImage         String?
+  ogImageAlt      String?
   updated_at      DateTime   @updatedAt
   Settings        Settings[]
 }
@@ -153,6 +161,10 @@ model Blog {
   category        Categories @relation(fields: [category_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   created_at      DateTime   @default(now())
   updated_at      DateTime   @updatedAt
+  ogTitle         String?
+  ogDescription   String?
+  ogImage         String?
+  ogImageAlt      String?
   comments        Comment[]
   views           Views[]
   metaTitle       String?

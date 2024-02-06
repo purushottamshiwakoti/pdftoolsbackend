@@ -114,7 +114,7 @@ export const addBlog=async(values: z.infer<typeof blogSchema>)=>{
             }
         }
 
-        const {category_id,description,image,imageAlt,slug,title}=validateSchema.data;
+        const {category_id,description,image,imageAlt,slug,title,metaDescription,metaTitle,ogDescription,ogImage,ogImageAlt}=validateSchema.data;
 
         const blogExists=await prismadb.blog.findUnique({
             where:{
@@ -129,18 +129,20 @@ export const addBlog=async(values: z.infer<typeof blogSchema>)=>{
 
         await prismadb.blog.create({
             data:{
-               title,
-               slug,
-               description,
-               image,
-               imageAlt,
-            category_id
+            //    title,
+            //    slug,
+            //    description,
+            //    image,
+            //    imageAlt,
+            // category_id
+            ...values
             }
         });
 
         return {success:"Successfully created blog"}
         
     } catch (error) {
+        console.log(error);
         return {error:"Something went wrong"};
         
     }

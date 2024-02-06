@@ -25,6 +25,11 @@ export const pageSchema = z.object({
   longDescriptionTitle:  z.optional(z.any()).nullable(),
   metaTitle:  z.optional(z.any()).nullable(),
   metaDescription:  z.optional(z.any()).nullable(),
+  ogTitle:  z.optional(z.any()).nullable(),
+  ogDescription:  z.optional(z.any()).nullable(),
+  ogImage:  z.optional(z.any()).nullable(),
+  ogImageAlt:  z.optional(z.any()).nullable(),
+
 });
 
 export const stepSchema = z.object({
@@ -55,6 +60,10 @@ export const otherPageSchema = z.object({
   description:z.optional(z.any()).nullable(),
   metaTitle:  z.optional(z.any()).nullable(),
   metaDescription:  z.optional(z.any()).nullable(),
+  ogTitle:  z.optional(z.any()).nullable(),
+  ogDescription:  z.optional(z.any()).nullable(),
+  ogImage:  z.optional(z.any()).nullable(),
+  ogImageAlt:  z.optional(z.any()).nullable(),
 
 });
 
@@ -129,4 +138,8 @@ export const blogSchema=z.object({
   category_id:z.string().min(1,{message:"Blog category is required"}),
   metaTitle:z.optional(z.string()),
   metaDescription:z.optional(z.string()),
+  ogTitle:  z.optional(z.any()).nullable(),
+  ogDescription:  z.optional(z.any()).nullable(),
+  ogImage:  z.optional(z.any()).nullable(),
+  ogImageAlt:  z.optional(z.any()).nullable(),
 });
