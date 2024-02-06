@@ -171,7 +171,7 @@ model Comment {
   comment    String
   blog_id    String   @db.ObjectId
   status     Status   @default(UNREAD)
-  blog       Blog     @relation(fields: [blog_id], references: [id])
+  blog       Blog     @relation(fields: [blog_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }

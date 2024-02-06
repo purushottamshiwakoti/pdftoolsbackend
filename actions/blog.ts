@@ -99,6 +99,7 @@ id
         return {success:"Successfully deleted category"}
         
     } catch (error) {
+        console.log(error)
         return {error:"Something went wrong"};
         
     }

@@ -59,19 +59,24 @@ export const EditCategoryForm = ({
   }
 
   const onDelete = () => {
-    startTransisition(() => {
-      deleteCategory(id).then((data) => {
-        if (data?.success) {
-          toast.success(data.success);
-          router.refresh();
-          router.push("/blogs/categories");
-          form.reset();
-        }
-        if (data?.error) {
-          toast.error(data.error);
-        }
+    const confirmation = confirm(
+      "Are you sure you want to delete this category? Deleting this category will also delete comments and blogs related to this category"
+    );
+    if (confirmation) {
+      startTransisition(() => {
+        deleteCategory(id).then((data) => {
+          if (data?.success) {
+            toast.success(data.success);
+            router.refresh();
+            router.push("/blogs/categories");
+            form.reset();
+          }
+          if (data?.error) {
+            toast.error(data.error);
+          }
+        });
       });
-    });
+    }
   };
   return (
     <Card className=" mt-10 w-[30rem]">
