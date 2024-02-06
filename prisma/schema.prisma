@@ -82,6 +82,7 @@ model Settings {
   tasksButtonHref     String?
   tasksImage          String?
   tasksImageAlt       String?
+  comapnyTitle        String?
   updated_at          DateTime   @updatedAt
   other_page_id       String     @db.ObjectId
   other_page          OtherPages @relation(fields: [other_page_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -177,7 +178,7 @@ model Views {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   views      Int
   blog_id    String   @db.ObjectId
-  blog       Blog     @relation(fields: [blog_id], references: [id])
+  blog       Blog     @relation(fields: [blog_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }

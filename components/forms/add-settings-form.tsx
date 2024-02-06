@@ -4,10 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { settingsSchema } from "@/schemas";
 import { Card, CardContent } from "../ui/card";
-import { settingsSchema, stepSchema } from "@/schemas";
-import { CldUploadButton } from "next-cloudinary";
 
+import { updatesettings } from "@/actions/pages";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,12 +19,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { addStep, updatesettings } from "@/actions/pages";
 import { toast } from "sonner";
-import { Textarea } from "../ui/textarea";
 import { ImageUpload } from "../image-upload";
+import { Textarea } from "../ui/textarea";
 
 export const AddSettingsForm = ({
   page_id,
@@ -34,7 +33,6 @@ export const AddSettingsForm = ({
   Settings?: any[];
 }) => {
   const settingsArray = Settings ?? [];
-  console.log(settingsArray[0]);
 
   const router = useRouter();
   const [isPending, startTransisition] = useTransition();
@@ -57,6 +55,7 @@ export const AddSettingsForm = ({
       tasksButtonHref: settingsArray[0]?.tasksButtonHref,
       tasksImage: settingsArray[0]?.tasksImage,
       tasksImageAlt: settingsArray[0]?.tasksImageAlt,
+      comapnyTitle: settingsArray[0]?.comapnyTitle,
     },
   });
 
@@ -390,6 +389,25 @@ export const AddSettingsForm = ({
                     <FormControl>
                       <Input
                         placeholder="Enter banner image alt text here"
+                        {...field}
+                        disabled={isPending}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="comapnyTitle"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Company Title</FormLabel>
+
+                    <FormControl>
+                      <Input
+                        placeholder="Enter company title here"
                         {...field}
                         disabled={isPending}
                       />

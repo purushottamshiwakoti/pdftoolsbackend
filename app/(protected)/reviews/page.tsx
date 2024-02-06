@@ -17,11 +17,9 @@ const ReviewsPage = async () => {
   const data = await getData();
   return (
     <div>
-      {data && data.length < 3 && (
-        <div>
-          <ReviewModal />
-        </div>
-      )}
+      <div>
+        <ReviewModal />
+      </div>
       <div className="mt-3 mr-10">
         {data && <DataTable columns={columns} data={data} />}
       </div>

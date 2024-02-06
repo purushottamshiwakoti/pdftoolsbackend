@@ -47,6 +47,7 @@ export const AddReviewForm = () => {
         if (data?.success) {
           toast.success(data.success);
 
+          form.reset();
           router.refresh();
         }
         if (data?.error) {
@@ -54,7 +55,6 @@ export const AddReviewForm = () => {
         }
       });
     });
-    console.log(values);
   }
   return (
     <Card className=" mt-10">

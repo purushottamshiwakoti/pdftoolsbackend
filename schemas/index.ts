@@ -75,6 +75,7 @@ export const settingsSchema=z.object({
   tasksButtonHref  :z.optional(z.any()).nullable(),   
   tasksImage       :z.optional(z.any()).nullable(), 
   tasksImageAlt   :z.optional(z.any()).nullable(),
+  comapnyTitle   :z.optional(z.any()).nullable(),
 
 })
 

@@ -2,6 +2,7 @@
 
 import prismadb from "@/lib/db";
 import { blogSchema, categoriesSchema } from "@/schemas";
+import { Console } from "console";
 import * as z from "zod";
 
 
@@ -161,6 +162,8 @@ export const updateBlog=async(values: z.infer<typeof blogSchema>,id:string)=>{
             }
         })
 
+        console.log(findBlog)
+
         if(!findBlog){
             return {error:"No blog found"}
         }
@@ -208,6 +211,7 @@ export const deleteBlog=async(id:string)=>{
         return {success:"Successfully deleted blog"}
         
     } catch (error) {
+        console.log(error)
         return {error:"Something went wrong"};
         
     }

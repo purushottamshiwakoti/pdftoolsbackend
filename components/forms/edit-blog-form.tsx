@@ -197,6 +197,9 @@ export const EditBlogForm = ({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Blog Image</FormLabel>
+                          <FormDescription>
+                            Image size must be 1920*1080
+                          </FormDescription>
                           <FormControl>
                             <ImageUpload
                               onChange={field.onChange}
