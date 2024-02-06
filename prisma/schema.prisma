@@ -156,7 +156,9 @@ model Blog {
   description     String
   slug            String     @unique
   image           String
+  bannerImage     String?
   imageAlt        String
+  bannerImageAlt  String?
   category_id     String     @db.ObjectId
   category        Categories @relation(fields: [category_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   created_at      DateTime   @default(now())

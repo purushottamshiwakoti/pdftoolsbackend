@@ -60,6 +60,8 @@ const EditBlogPage = async ({ params }: { params: any }) => {
           ogImage={blog.ogImage ? blog.ogImage : undefined}
           ogImageAlt={blog.imageAlt ? blog.imageAlt : undefined}
           ogTitle={blog.ogTitle ? blog.ogTitle : undefined}
+          bannerImage={blog.bannerImage ? blog.bannerImage : undefined}
+          bannerImageAlt={blog.bannerImageAlt ? blog.bannerImageAlt : undefined}
         />
       </div>
     </div>

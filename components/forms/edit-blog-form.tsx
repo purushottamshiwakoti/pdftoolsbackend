@@ -57,6 +57,8 @@ interface AddBlogFormProps {
   ogImage: string | undefined;
   ogImageAlt: string | undefined;
   ogTitle: string | undefined;
+  bannerImage: string | undefined;
+  bannerImageAlt: string | undefined;
   id: string;
 }
 
@@ -75,6 +77,8 @@ export const EditBlogForm = ({
   ogImage,
   ogImageAlt,
   ogTitle,
+  bannerImage,
+  bannerImageAlt,
 }: AddBlogFormProps) => {
   const router = useRouter();
   const [isPending, startTransisition] = useTransition();
@@ -93,6 +97,8 @@ export const EditBlogForm = ({
       ogImage: ogImage,
       ogImageAlt: ogImageAlt,
       ogTitle: ogTitle,
+      bannerImage: bannerImage,
+      bannerImageAlt: bannerImageAlt,
     },
   });
 
@@ -239,6 +245,51 @@ export const EditBlogForm = ({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Image alt text</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="Enter image alt text here"
+                              {...field}
+                              disabled={isPending}
+                            />
+                          </FormControl>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-4">
+                  <div className="col-span-3">
+                    <FormField
+                      control={form.control}
+                      name="bannerImage"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Banner Image</FormLabel>
+                          <FormDescription>
+                            Banner Image size must be 1080*1080
+                          </FormDescription>
+                          <FormControl>
+                            <ImageUpload
+                              onChange={field.onChange}
+                              value={field.value}
+                              disabled={isPending}
+                            />
+                          </FormControl>
+
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="-ml-[10rem]">
+                    <FormField
+                      control={form.control}
+                      name="bannerImageAlt"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Banner image alt text</FormLabel>
                           <FormControl>
                             <Input
                               placeholder="Enter image alt text here"
