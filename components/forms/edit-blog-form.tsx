@@ -36,6 +36,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { addBlog, deleteBlog, updateBlog } from "@/actions/blog";
+import { Textarea } from "../ui/textarea";
 
 interface AddBlogFormProps {
   categories:
@@ -50,6 +51,8 @@ interface AddBlogFormProps {
   slug: string;
   category_id: string;
   imageAlt: string;
+  metaDescription: string | undefined;
+  metaTitle: string | undefined;
   id: string;
 }
 
@@ -62,6 +65,8 @@ export const EditBlogForm = ({
   imageAlt,
   slug,
   title,
+  metaDescription,
+  metaTitle,
 }: AddBlogFormProps) => {
   const router = useRouter();
   const [isPending, startTransisition] = useTransition();
@@ -74,6 +79,8 @@ export const EditBlogForm = ({
       slug: slug,
       category_id: category_id,
       imageAlt: imageAlt,
+      metaDescription: metaDescription,
+      metaTitle: metaTitle,
     },
   });
 
@@ -257,6 +264,42 @@ export const EditBlogForm = ({
                           ))}
                         </SelectContent>
                       </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="metaTitle"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Meta Title</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter meta title here"
+                          {...field}
+                          disabled={isPending}
+                        />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="metaDescription"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Meta Description</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Enter meta desription here"
+                          {...field}
+                          disabled={isPending}
+                        />
+                      </FormControl>
 
                       <FormMessage />
                     </FormItem>

@@ -97,6 +97,9 @@ export const AddCompanyImageForm = ({
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Image One</FormLabel>
+                        <FormDescription>
+                          Image size must be 300*300px
+                        </FormDescription>
                         <FormControl>
                           <ImageUpload
                             onChange={field.onChange}
@@ -117,6 +120,7 @@ export const AddCompanyImageForm = ({
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Image One Alt Text</FormLabel>
+
                         <FormControl>
                           <Input
                             {...field}
@@ -138,6 +142,10 @@ export const AddCompanyImageForm = ({
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Image Two</FormLabel>
+                        <FormDescription>
+                          Image size must be 300*300px
+                        </FormDescription>
+
                         <FormControl>
                           <ImageUpload
                             onChange={field.onChange}
@@ -180,6 +188,9 @@ export const AddCompanyImageForm = ({
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Image Three</FormLabel>
+                        <FormDescription>
+                          Image size must be 300*300px
+                        </FormDescription>
                         <FormControl>
                           <ImageUpload
                             onChange={field.onChange}
@@ -221,6 +232,9 @@ export const AddCompanyImageForm = ({
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Image Four</FormLabel>
+                        <FormDescription>
+                          Image size must be 300*300px
+                        </FormDescription>
                         <FormControl>
                           <ImageUpload
                             onChange={field.onChange}

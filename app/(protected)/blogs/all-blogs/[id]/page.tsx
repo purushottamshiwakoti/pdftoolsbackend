@@ -52,6 +52,10 @@ const EditBlogPage = async ({ params }: { params: any }) => {
           imageAlt={blog.imageAlt}
           slug={blog.slug}
           title={blog.title}
+          metaDescription={
+            blog.metaDescription ? blog.metaDescription : undefined
+          }
+          metaTitle={blog.metaTitle ? blog.metaTitle : undefined}
         />
       </div>
     </div>

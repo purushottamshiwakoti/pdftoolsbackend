@@ -36,6 +36,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { addBlog } from "@/actions/blog";
+import { Textarea } from "../ui/textarea";
 
 interface AddBlogFormProps {
   categories:
@@ -58,6 +59,8 @@ export const AddBlogForm = ({ categories }: AddBlogFormProps) => {
       slug: "",
       category_id: "",
       imageAlt: "",
+      metaTitle: "",
+      metaDescription: "",
     },
   });
 
@@ -212,6 +215,42 @@ export const AddBlogForm = ({ categories }: AddBlogFormProps) => {
                           ))}
                         </SelectContent>
                       </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="metaTitle"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Meta Title</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter meta title here"
+                          {...field}
+                          disabled={isPending}
+                        />
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="metaDescription"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Meta Description</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Enter meta desription here"
+                          {...field}
+                          disabled={isPending}
+                        />
+                      </FormControl>
 
                       <FormMessage />
                     </FormItem>

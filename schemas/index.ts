@@ -127,4 +127,6 @@ export const blogSchema=z.object({
   image:z.string().min(3,{message:"Blog image is required"}),
   imageAlt:z.string().min(1,{message:"Blog image alt text is required"}),
   category_id:z.string().min(1,{message:"Blog category is required"}),
+  metaTitle:z.optional(z.string()),
+  metaDescription:z.optional(z.string()),
 });
