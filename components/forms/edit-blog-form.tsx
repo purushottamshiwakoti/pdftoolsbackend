@@ -268,7 +268,7 @@ export const EditBlogForm = ({
                         <FormItem>
                           <FormLabel>Banner Image</FormLabel>
                           <FormDescription>
-                            Banner Image size must be 1080*1080
+                            Banner Image size must be 500*500
                           </FormDescription>
                           <FormControl>
                             <ImageUpload
