@@ -32,7 +32,7 @@ export const Sidebar = () => {
     <div className="p-4 bg-[#FAFBFD] shadow-xl  h-full   z-50 w-[250px] overflow-y-auto fixed   ">
       <div>
         <Link
-          href="/admin/dashboard"
+          href="/dashboard"
           className="font-semibold tracking-tight text-xl text-primary text-center mt-2"
         >
           Admin Dashboard

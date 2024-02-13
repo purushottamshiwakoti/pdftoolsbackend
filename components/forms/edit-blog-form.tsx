@@ -4,8 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { blogSchema } from "@/schemas";
 import { Card, CardContent } from "../ui/card";
-import { blogSchema, stepSchema } from "@/schemas";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,9 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { addStep } from "@/actions/pages";
 import { toast } from "sonner";
 import { ImageUpload } from "../image-upload";
 
@@ -28,6 +27,7 @@ import EditorToolbar, { formats, modules } from "@/components/editor-toolbar";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+import { deleteBlog, updateBlog } from "@/actions/blog";
 import {
   Select,
   SelectContent,
@@ -35,7 +35,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { addBlog, deleteBlog, updateBlog } from "@/actions/blog";
 import { Textarea } from "../ui/textarea";
 
 interface AddBlogFormProps {
@@ -80,6 +79,7 @@ export const EditBlogForm = ({
   bannerImage,
   bannerImageAlt,
 }: AddBlogFormProps) => {
+  console.log(description);
   const router = useRouter();
   const [isPending, startTransisition] = useTransition();
   const form = useForm<z.infer<typeof blogSchema>>({
