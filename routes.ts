@@ -1,5 +1,6 @@
 export const publicRoutes=[
     "/api",
+   "/upload"
     // "/api/page/merge-pdf",
     // "/api/page/compress-pdf",
     // "/api/page/rotate-pdf-pages",
