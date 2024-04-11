@@ -30,6 +30,7 @@ const BlogCommentPage = async () => {
     blog: {
       title: item.blog.title,
     },
+    isPublished: item.published,
   }));
   console.log(data);
   return (

@@ -14,7 +14,11 @@ export async function GET(req:any,params:any){
                         name:true
                     }
                 },
-                comments:true,
+                comments:{
+                    where:{
+                        published:true,
+                    }
+                },
                 views:true
             },
             

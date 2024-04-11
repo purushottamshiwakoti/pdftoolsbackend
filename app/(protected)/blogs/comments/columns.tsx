@@ -1,24 +1,20 @@
-"use client";
-
+import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
-
 import { MoreHorizontal, ArrowUpDown } from "lucide-react";
-
+import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import prismadb from "@/lib/db";
-import { useTransition } from "react";
+import { updateCommentStatus } from "@/actions/comment";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Comments = {
   id: string;
   fullName: string;
@@ -27,6 +23,35 @@ export type Comments = {
   blog: {
     title: string;
   };
+  isPublished: boolean;
+};
+
+const CommentCell: React.FC<{ row: any }> = ({ row }) => {
+  const { id, isPublished } = row.original;
+  const [isPending, startTransition] = React.useTransition();
+  const router = useRouter();
+
+  const handleCheck = (value: boolean) => {
+    startTransition(() => {
+      updateCommentStatus(id, value).then((data) => {
+        if (data?.success) {
+          toast.success(data.success);
+          router.refresh();
+        }
+        if (data?.error) {
+          toast.error(data.error);
+        }
+      });
+    });
+  };
+
+  return (
+    <Switch
+      checked={isPublished}
+      onCheckedChange={() => handleCheck(!isPublished)}
+      disabled={isPending}
+    />
+  );
 };
 
 export const columns: ColumnDef<Comments>[] = [
@@ -34,7 +59,6 @@ export const columns: ColumnDef<Comments>[] = [
     accessorKey: "fullName",
     header: "Full Name",
   },
-
   {
     accessorKey: "comment",
     header: "Comment",
@@ -45,23 +69,19 @@ export const columns: ColumnDef<Comments>[] = [
   },
   {
     accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Email <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
-    accessorKey: "role",
-    header: "Role",
+    accessorKey: "isPublished",
+    cell: CommentCell,
   },
-
   {
     id: "actions",
     cell: ({ row }) => {
@@ -77,7 +97,6 @@ export const columns: ColumnDef<Comments>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
             <DropdownMenuItem>
               <Link href={`/blogs/comments/${comment.id}`}>View Comment</Link>
             </DropdownMenuItem>

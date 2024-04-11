@@ -165,7 +165,7 @@ export const AddBlogForm = ({ categories }: AddBlogFormProps) => {
                         <FormItem>
                           <FormLabel>Blog Image</FormLabel>
                           <FormDescription>
-                            Blog Image size must be 1920*1080
+                            Blog Image size must be 1200*603
                           </FormDescription>
                           <FormControl>
                             <ImageUpload
@@ -211,7 +211,7 @@ export const AddBlogForm = ({ categories }: AddBlogFormProps) => {
                         <FormItem>
                           <FormLabel>Banner Image</FormLabel>
                           <FormDescription>
-                            Banner Image size must be 500*500
+                            Banner Image size must be 384*193
                           </FormDescription>
                           <FormControl>
                             <ImageUpload
