@@ -10,6 +10,7 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  trustHost:true,
   callbacks: {
     async signIn({ user }) {
       if (!user) return false;
